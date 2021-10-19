@@ -23,7 +23,7 @@ import com.example.wordsapp.databinding.ActivityDetailBinding
 
 
 class DetailActivity : AppCompatActivity() {
-    companion object{
+    companion object {
         const val LETTER = "letter"
         const val SEARCH_PREFIX = "https://www.google.com/search?q="
     }  //設定為class DetailActivity 中的一個靜態常數
@@ -40,7 +40,8 @@ class DetailActivity : AppCompatActivity() {
         // Retrieve the LETTER from the Intent extras
         // intent.extras.getString returns String? (String or null)
         // so toString() guarantees that the value will be a String
-        val letterId = intent?.extras?.getString(LETTER).toString()//把之前intent.putExtra產出的key-value數據再導入
+        val letterId =
+            intent?.extras?.getString(LETTER).toString()//把之前intent.putExtra產出的key-value數據再導入
 
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)

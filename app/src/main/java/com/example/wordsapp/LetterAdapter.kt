@@ -68,32 +68,35 @@ class LetterAdapter :
             val context = holder.view.context  // get a reference to the context
             val intent =
                 Intent(context, DetailActivity::class.java)  //DetailActivity object is created
-            intent.putExtra(DetailActivity.LETTER, holder.button.text.toString())  //putExtra("key",value) Extra：擴展信息
+            intent.putExtra(
+                DetailActivity.LETTER,
+                holder.button.text.toString()
+            )  //putExtra("key",value) Extra：擴展信息
             context.startActivity(intent)  //start DetailActivity 導入啟用
 
         }
     }
 
-        // Setup custom accessibility delegate to set the text read with
-        // an accessibility service
-        companion object Accessibility : View.AccessibilityDelegate() {
-            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-            override fun onInitializeAccessibilityNodeInfo(
-                host: View?,
-                info: AccessibilityNodeInfo?
-            ) {
-                super.onInitializeAccessibilityNodeInfo(host, info)
-                // With `null` as the second argument to [AccessibilityAction], the
-                // accessibility service announces "double tap to activate".
-                // If a custom string is provided,
-                // it announces "double tap to <custom string>".
-                val customString = host?.context?.getString(R.string.look_up_words)
-                val customClick =
-                    AccessibilityNodeInfo.AccessibilityAction(
-                        AccessibilityNodeInfo.ACTION_CLICK,
-                        customString
-                    )
-                info?.addAction(customClick)
-            }
+    // Setup custom accessibility delegate to set the text read with
+    // an accessibility service
+    companion object Accessibility : View.AccessibilityDelegate() {
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+        override fun onInitializeAccessibilityNodeInfo(
+            host: View?,
+            info: AccessibilityNodeInfo?
+        ) {
+            super.onInitializeAccessibilityNodeInfo(host, info)
+            // With `null` as the second argument to [AccessibilityAction], the
+            // accessibility service announces "double tap to activate".
+            // If a custom string is provided,
+            // it announces "double tap to <custom string>".
+            val customString = host?.context?.getString(R.string.look_up_words)
+            val customClick =
+                AccessibilityNodeInfo.AccessibilityAction(
+                    AccessibilityNodeInfo.ACTION_CLICK,
+                    customString
+                )
+            info?.addAction(customClick)
         }
+    }
 }
